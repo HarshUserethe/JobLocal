@@ -1,0 +1,258 @@
+ /* TOP NAVIGATION BAR  */
+ 
+ body{
+  overflow-x: hidden;
+ }
+ .navbar{
+  width: 100%;
+  height: 12vh;
+  background-color: #F8F8F8;
+  display: flex;
+ justify-content: center;
+ box-shadow: 1px 1px 2px #00000027;
+ border-bottom: 1px solid #00000015;
+ }
+
+ .logo-space{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 9;
+ }
+.logo-space>span:nth-child(1){
+  color: #384BFF;
+}
+.logo-space>span:nth-child(2){
+  color: #ff8a00;
+}
+ .nav-menu{
+  display: flex;
+  height: 100%;
+  width: 60%;
+  justify-content: space-evenly;
+  align-items: center;
+ }
+
+ .acc-buttons{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+ }
+
+ li{
+  color:#ffffffd0;
+  list-style: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) .5s;
+ }
+
+ li:hover{
+  color: #fff;
+  transform: scaleY(1.5);
+ }
+
+ .cont-wrapper{
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+
+ }
+
+ .btn-wrappers{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+ }
+
+ .form-wrapper{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+ }
+ form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+ }
+
+ #outlined-basic:focus{
+  outline-color: #384BFF !important;
+ }
+
+ .form-page{
+  width: 100%;
+  padding: 20px;
+ }
+
+ .frm{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+ }
+ .heading{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  padding: 20px;
+ }
+ .navlist-col{
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  z-index: 9;
+ }
+ #loginbutton{
+  font-weight: 500;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  z-index: 9;
+ }
+
+ #loginbutton:hover{
+  border: 1px solid #384BFF;
+  color: #384BFF !important;
+  background-color: #384cff15;
+ }
+ .cursor{
+  width:  2vw;
+  height: 2vw;
+  border-radius: 50%;
+  /* background-color: #384BFF; */
+  position: absolute;
+  z-index: 1;
+  background-color: #384BFF;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+ }
+
+ .mini{
+  width:  70%;
+  height: 70%;
+  border: 1px solid #384BFF;
+  border-radius: 50%;
+  display: none;
+ }
+ .list-ls{
+  z-index: 9;
+ }
+ 
+ .navlist-col:hover{
+  color: #fff;
+  text-decoration: underline;
+ }
+
+ .heropage-body{
+  width: 100vw;
+  height: 90vh;
+ }
+
+ .heropage-body>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+
+ .overlay{
+  width: 100%;
+  height: 45%;
+  position: absolute;
+  background-color: #384cff64;
+  background: #384cff7a;
+  opacity: 100%;
+  z-index: 1;
+  background: linear-gradient(270deg, rgba(56,75,255,0) 5%, #384cff56 60%);
+
+ }
+
+ .text-content{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding-left: 10%;
+  z-index: 9;
+  margin-top: -3%;
+ }
+
+ .clr{
+  color: #fff;
+ }
+
+ .headline>h1{
+font-size: 3.5rem;
+line-height: 70px
+ }
+
+ .summary>p{
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #ffffffd4;
+ }
+
+ .rnd-line{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 50%;
+ }
+
+ .rnd-line:before{
+  content: "";
+  width: 5%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 500px;
+  position: absolute;
+
+ }
+ .rnd-line>span{
+  margin-left: 22%;
+ }
+ .wavy{
+  width: 100%;
+  height: 20%;
+  background-color: transparent;
+  position: absolute;
+  z-index: 9;
+  top: 38%;
+ }
+ .wavy>img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+ }
+ .about-body{
+  width: 100vw;
+  height: 100vh;
+  background-color: #F6F6F6;
+ }
+ .buttons{
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+ }
+ .buttons>Button{
+  font-size: 1.2rem !important;
+ }
+ #regButton{
+  z-index: 9;
+ }
