@@ -256,3 +256,77 @@ line-height: 70px
  #regButton{
   z-index: 9;
  }
+
+
+
+
+
+ .job-site-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.left-image-section {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.right-content-section {
+  flex: 2;
+  padding-left: 20px;
+}
+
+.right-content-section h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.features-grid {
+  display: flex;
+  justify-content: space-around;
+}
+
+.feature-box {
+  text-align: center;
+  width: 120px;
+}
+
+.feature-box img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.feature-box p {
+  font-size: 14px;
+  color: #333;
+}
+
+.heroButtons{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+
+.error{
+  color: red;
+  font-size: .8rem;
+  font-family: satoshi;
+  text-align: center;
+}

@@ -1,8 +1,10 @@
 import './App.css'
 import Home from './pages/Home'
 import Form from './pages/Form'
-
+import ProtectedRoute from './components/ProtectedRoute'
 import { HashRouter, Routes, Route} from 'react-router-dom'
+import CursorFollower from './components/CursorFollower'
+import UserDashboard from './pages/UserDashboard'
 
 
 function App() {
@@ -14,7 +16,8 @@ function App() {
   <div>
   <Routes>
   <Route path="/" element={ <Home />} />
-  <Route path="/register" element={ <Form />} />
+  <Route path="/dashboard/:userid" element={ <ProtectedRoute element={<UserDashboard />} />} />
+  {/* <Route path="/register" element={ <Form />} /> */}
   </Routes>
   </div>
   </HashRouter>

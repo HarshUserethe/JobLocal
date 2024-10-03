@@ -2,7 +2,7 @@ import "../App.css";
 import HeroImage from "../assets/new.png";
 import breakerSVG from "../assets/wave.svg";
 import Button from 'react-bootstrap/Button';
-import { BsArrowRight } from "react-icons/bs";
+import { GrDocumentText } from "react-icons/gr";
 import CursorFollower from "./CursorFollower";
  
 
@@ -16,7 +16,7 @@ const HeroPage = () => {
       <div className="headline"><h1 className="clr"><span style={{color: "#ff8a00"}}>Post Resume</span> & Get Your Desired Job <span style={{color:"#ff8a00"}}>Locally</span></h1></div>
       <div className="summary"><p className="clr">Find your perfect job locally with Job Local. Explore top career opportunities and local employment options near you. Start your job search today and land the role you deserve!</p></div>
       <div className="buttons">
-      <Button variant="outline-light" className="heroButtons">Explore More <BsArrowRight /> </Button>{' '}
+      <Button variant="outline-light" className="heroButtons">Upload Resume <GrDocumentText style={{fontSize: "1rem"}} /> </Button>{' '}
       <Button variant="primary" className="heroButtons">Contact Us</Button>{' '}
       </div>
     </div>
