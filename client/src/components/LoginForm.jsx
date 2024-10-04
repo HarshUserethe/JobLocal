@@ -77,7 +77,7 @@ const LoginForm = ({handleClose, open}) => {
               <div className="error" style={{display: err2 ? "block" : "none"}}>{err2}</div>
               <Button variant="contained" style={{ width: "17.5vw" }}>login</Button>
               <span>forgot password? click here</span>
-              <Button type='submit' variant="contained" style={{ width: "17.5vw", background: "#fff", color: "#000", display: "flex", gap: "10px", justifyContent: "center", alignItems: "center" }}>
+              <Button className='googleBtn' type='submit' variant="contained" style={{ width: "17.5vw", background: "#fff", color: "#000", display: "flex", gap: "10px", justifyContent: "center", alignItems: "center" }}>
                 <FcGoogle style={{ fontSize: "1.2rem" }} /> Google
               </Button>
             </form>

@@ -11,6 +11,7 @@ import { ID } from 'appwrite';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const style = {
     position: 'absolute',
     top: '50%',
@@ -50,11 +51,11 @@ const RegForm = ({handleRegClose,regOpen}) => {
       if (formObj.phone.length !== 10 || formObj.phone.length < 10) {
         setErr2('Invalid information, please check it again.');
       } else {
-        const userID = ID.unique();
-  
+       
+
         // Use await to handle the account.create method
         const response = await account.create(
-          userID,
+          ID.unique(),
           formObj.email,
           formObj.password,
           formObj.phone,
@@ -62,7 +63,9 @@ const RegForm = ({handleRegClose,regOpen}) => {
         );
   
         console.log(response);
-        const userId = response.$id; // Get the user ID
+        const userId = response.$id;
+        console.log(userId); // Get the user ID
+          // Log the user in
         navigate(`/dashboard/${userId}`); // Redirect to dashboard with user ID
       }
     } catch (error) {
@@ -97,7 +100,7 @@ const RegForm = ({handleRegClose,regOpen}) => {
               <div className="error" style={{display: err2 ? "block" : "none"}}>{err2}</div>
               <Button type='submit' variant="contained" style={{ width: "17.5vw" }}>Create account</Button>
               <span>or signup with</span>
-              <Button variant="contained" style={{ width: "17.5vw", background: "#fff", color: "#000", display: "flex", gap: "10px", justifyContent: "center", alignItems: "center" }}>
+              <Button className='googleBtn' variant="contained" style={{ width: "17.5vw", background: "#fff", color: "#000", display: "flex", gap: "10px", justifyContent: "center", alignItems: "center" }}>
                 <FcGoogle style={{ fontSize: "1.2rem" }} /> Google
               </Button>
             </form>

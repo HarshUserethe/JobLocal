@@ -16,7 +16,8 @@ function App() {
   <div>
   <Routes>
   <Route path="/" element={ <Home />} />
-  <Route path="/dashboard/:userid" element={ <ProtectedRoute element={<UserDashboard />} />} />
+  <Route path="/dashboard/:userid" element={ <UserDashboard />} />
+  {/* <Route path="/dashboard/:userid" element={ <ProtectedRoute element={<UserDashboard />} />} /> */}
   {/* <Route path="/register" element={ <Form />} /> */}
   </Routes>
   </div>

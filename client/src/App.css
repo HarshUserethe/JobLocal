@@ -58,7 +58,6 @@
 
  li:hover{
   color: #fff;
-  transform: scaleY(1.5);
  }
 
  .cont-wrapper{
@@ -98,6 +97,10 @@ padding: 20px;
  .form-page{
   width: 100%;
   padding: 20px;
+ }
+ .googleBtn{
+  box-shadow: none !important;
+  border: 1px solid #00000085 !important;
  }
 
  .frm{
