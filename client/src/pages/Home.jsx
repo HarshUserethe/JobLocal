@@ -1,4 +1,4 @@
-import TopNavigation from "../components/TopNavigation"
+import TopNavigation from "../components/TopNavigation";
 import HeroPage from "../components/HeroPage";
 import Aboutus from "./Aboutus";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
@@ -12,19 +12,27 @@ const Home = () => {
 
   const options = {
     smooth: true,
-  } 
+  };
 
+  const onUpdate = () => {
+    // This function will be triggered when the scroll instance needs to be updated
+    console.log("Locomotive scroll updated");
+  };
 
   return (
-    
     <div>
-     <LocomotiveScrollProvider options={options} containerRef={ref}>
-     <main data-scroll-container ref={ref}>
-     <CursorFollower />
-      <TopNavigation />
-      <HeroPage />
-      <Aboutus />
-      </main>
+      <LocomotiveScrollProvider
+        options={options}
+        containerRef={ref}
+        onUpdate={onUpdate} // Add the onUpdate prop here
+        watch={[]} // Add any props you want to watch here (for now, it's an empty array)
+      >
+        <main data-scroll-container ref={ref}>
+          <CursorFollower />
+          <TopNavigation />
+          <HeroPage />
+          <Aboutus />
+        </main>
       </LocomotiveScrollProvider>
     </div>
   );

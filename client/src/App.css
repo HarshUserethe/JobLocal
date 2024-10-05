@@ -333,3 +333,16 @@ line-height: 70px
   font-family: satoshi;
   text-align: center;
 }
+.line{
+  width: 30px;
+  height: 2px;
+  background-color: #1976D2;
+}
+.otp-container{
+  height: 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
