@@ -3,10 +3,6 @@ const bcrypt = require('bcrypt');
 
 // Schema definition
 const userSchema = mongoose.Schema({
-  userid:{
-    type: String,
-    require: true
-  },
   userip: {
     type: String,
     required: true

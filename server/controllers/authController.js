@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
 
     const hashpassword = await bcrypt.hashSync(password, 10);
     // const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
-    const userid = uuidv4();
+    // const userid = uuidv4();
    
     //User current ip ---->
     var userip = '';
@@ -32,21 +32,30 @@ exports.register = async (req, res) => {
     //Phone OTP Generation ----->
     const phoneOTP = Math.floor(1000 + Math.random() * 9000).toString();
 
-    user = new userModel({ userid, userip, fullname, email, phone, hashpassword });
+    user = new userModel({userip, fullname, email, phone, hashpassword });
 
     // Save user
     await user.save();
 
-   // Respond with success and user ID
-   res.status(200).json({
-    status: "Successfully Registered",
-    user: {
-      userid: user.userid,
-      fullname: user.fullname,
-      email: user.email,
-      phone: user.phone,
-    }
+   // Generate JWT token
+      const payload = {
+        id: user._id,
+        phone: user.phone
+      };
+
+   // Generate JWT token
+jwt.sign(payload, 'jwtSecret', { expiresIn: '24h' }, (err, token) => {
+  if (err) throw err;
+
+  // Respond with success and user ID along with the token
+  res.status(200).json({
+      status: "Successfully Registered",
+      token, // include the token here
+      user: {
+          userid: user._id,
+      }
   });
+});
 
   } catch (err) {
     console.log(err)
@@ -73,8 +82,22 @@ exports.login = async (req, res) => {
       });
     }
 
-    // If the user is found, send the user object (or specific details you want to expose)
-    return res.status(200).json({ success: true, message: "Login successful", user });
+    // Generate JWT token
+    const payload = {
+      user: { id: user.id }
+    };
+
+    jwt.sign(payload, 'jwtSecret', { expiresIn: '24h' }, (err, token) => {
+      if (err) throw err;
+  
+      // If the user is found, send the user object along with the token
+      return res.status(200).json({ 
+          success: true, 
+          message: "Login successful", 
+          token, // include the token here
+          user 
+      });
+  });
 
   } catch (error) {
     console.log(error);

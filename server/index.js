@@ -4,18 +4,19 @@ const app = express();
 const dontenv = require('dotenv')
 const { register, login } = require('./controllers/authController');
 const cors = require('cors');
+const bodyParser = require("body-parser")
+
+
 
 app.use(cors()); 
 app.use(express.json());
-dontenv.config();
-
-// Middleware
-const bodyParser = require("body-parser")
-
+require('dotenv').config();
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//middleware function
+
 // Connect to MongoDB
- mongoose.connect('mongodb+srv://jobslocal:SfNZT0uSusgXjuvb@cluster0.d0ech.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+ mongoose.connect(process.env.MONGODB_URI)
    .then(() => console.log('Connected to MongoDB'))
    .catch(err => console.log(err));
 

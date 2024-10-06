@@ -8,7 +8,7 @@ import UserDashboard from './pages/UserDashboard'
 
 
 function App() {
- 
+
 
   return (
    
@@ -16,7 +16,8 @@ function App() {
   <div>
   <Routes>
   <Route path="/" element={ <Home />} />
-  <Route path="/dashboard/:userid" element={ <UserDashboard />} />
+  {/* <Route path="/dashboard/:userid" element={ <UserDashboard />} /> */}
+  <Route path="/dashboard/:userid" element={ <ProtectedRoute><UserDashboard /></ProtectedRoute> } />
   {/* <Route path="/dashboard/:userid" element={ <ProtectedRoute element={<UserDashboard />} />} /> */}
   {/* <Route path="/register" element={ <Form />} /> */}
   </Routes>

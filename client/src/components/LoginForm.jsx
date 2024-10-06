@@ -1,12 +1,9 @@
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { FcGoogle } from "react-icons/fc";
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import '../App.css'
-// import { border, borderRadius } from '@mui/system';
-// import { account } from '../appWrite/services';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +27,6 @@ const LoginForm = ({handleClose, open}) => {
 
    const [err2, setErr2] = useState('');
    const [err, setErr] = useState('');
-   const [phone, setPhone] = useState('');
    const [otp, setOtp] = useState('');
    const [phoneNumber, setPhoneNumber] = useState(null)
    const [loading, setLoading] = useState(false)
@@ -55,7 +51,6 @@ const handleSubmit = async () => {
       body: JSON.stringify({ phone: phoneNumber })
     });
     
-    setLoading(false)
 
     if (!response.ok) {
         const errorMessage = await response.text();
@@ -67,7 +62,10 @@ const handleSubmit = async () => {
 
       const result = await response.json();
       const userFromResult = await result.user
-      navigate(`/dashboard/${userFromResult.userid}`)
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('userid', userFromResult._id); 
+
+      navigate(`/dashboard/${userFromResult._id}`)
 
   } catch (error) {
     if(!phoneNumber){

@@ -121,6 +121,8 @@ const RegForm = ({ handleRegClose, regOpen }) => {
       }
       const result = await response.json();
       const userFromResult = await result.user
+      localStorage.setItem('token', result.token);
+      
       navigate(`/dashboard/${userFromResult.userid}`)
       // If the response is OK, proceed with OTP sending
       // handleSendOtp();
