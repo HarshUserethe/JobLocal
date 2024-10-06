@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
-
+require('dotenv').config();
 
 // Register user
 exports.register = async (req, res) => {
@@ -44,7 +44,7 @@ exports.register = async (req, res) => {
       };
 
    // Generate JWT token
-jwt.sign(payload, 'jwtSecret', { expiresIn: '24h' }, (err, token) => {
+jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' }, (err, token) => {
   if (err) throw err;
 
   // Respond with success and user ID along with the token
@@ -87,7 +87,7 @@ exports.login = async (req, res) => {
       user: { id: user.id }
     };
 
-    jwt.sign(payload, 'jwtSecret', { expiresIn: '24h' }, (err, token) => {
+    jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' }, (err, token) => {
       if (err) throw err;
   
       // If the user is found, send the user object along with the token
