@@ -346,3 +346,100 @@ line-height: 70px
   flex-direction: column;
   gap: 20px;
 }
+
+/* PROFILE UPDATE FORM CSS  */
+.form-top{
+width: 100%;
+height: 20%;
+background-color: #052F5F;
+color: #fff;
+padding-top: 70px;
+padding-bottom: 70px;
+padding-left: 190px;
+
+}
+.form-top>h1{
+  font-size: 3rem;
+  line-height: 90%;
+}
+.form-top>h2{
+  font-size: 2.5rem;
+}
+.form-top>p{
+  font-size: 1rem;
+  color: #ffffffc7;
+}
+.form-container{
+  width: 100%;
+}
+.TextField{
+  font-family: "satoshi";
+}
+.formSection{
+  font-family: 'satoshi' !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  color: #000000b2 !important;
+}
+.field-fnt{
+  font-family: "satoshi" !important;
+  background-color: red !important;
+}
+.MuiInputBase-input{
+  font-family: "satoshi" !important;
+  font-size: 1rem !important;
+}
+.MuiFormLabel-root{
+  font-family: "satoshi" !important;
+}
+.capi-txt{
+  text-transform: capitalize !important;
+}
+.capi-txt:hover{
+  color: #000 !important;
+  background-color: #0077ff38 !important;
+}
+.prj-lable{
+  color: #fff;
+  background-color: #01397ade;
+  width: 10%;
+  text-align: center;
+  padding: 4px;
+  border: 1px solid #002f6484;
+  box-shadow: 1px 1px 2px #00000068;
+  border-radius: 500px;
+}
+.skills-container{
+background-color: #1976d215;
+padding: 10px;
+border-radius: 5px;
+border: 1px solid #1976d249;
+display: flex;
+justify-content: start;
+align-items: center;
+}
+.skilltag{
+  background-color: #d8a21a;
+  color: #fff;
+  padding: 3px;
+  border-radius: 500px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 10px;
+  font-size: .8rem;
+}
+.f-icon{
+ font-size: 1.1rem !important;
+ cursor: pointer;
+ color: #ffffffc5;
+}
+.btns-container{
+  display: flex;
+  gap: 25px;
+  margin-top: 30px;
+  justify-content: center;
+}
+.btnstyle{
+padding-left: 50px !important;
+padding-right: 50px !important;
+}
