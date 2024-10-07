@@ -45,14 +45,42 @@ const userSchema = mongoose.Schema({
     type: Date,
     required: false
   },
-  permanentAddress: {
-    type: String,
-    required: false
-  },
-  currentAddress: {
-    type: String,
-    required: false
-  },
+  permanentAddress: [{
+    houseNo: {
+      type: String,
+      required: false
+    },
+    city: {
+      type: String,
+      required: false
+    },
+    state: {
+      type: String,
+      required: false
+    },
+    pin: {
+      type: Number,
+      required: false
+    },
+  }],
+  currentAddress: [{
+    houseNo: {
+      type: String,
+      required: false
+    },
+    city: {
+      type: String,
+      required: false
+    },
+    state: {
+      type: String,
+      required: false
+    },
+    pin: {
+      type: Number,
+      required: false
+    },
+  }],
   gender: {
     type: String,
     enum: ['Male', 'Female', 'Other'],
@@ -63,6 +91,10 @@ const userSchema = mongoose.Schema({
     required: false
   },
   education: [{
+    degree: {
+      type: String,
+      required: false
+    },
     stream: {
       type: String,
       required: false
@@ -80,28 +112,28 @@ const userSchema = mongoose.Schema({
       required: false
     }
   }],
-  workExperience: [{
-    role: {
-      type: String,
-      required: false
-    },
-    company: {
-      type: String,
-      required: false
-    },
-    startDate: {
-      type: Date,
-      required: false
-    },
-    endDate: {
-      type: Date,
-      required: false
-    },
-    about: {
-      type: String,
-      required: true
-    }
-  }],
+ workExperience: [{
+   role: {
+     type: String,
+     required: false
+   },
+   company: {
+     type: String,
+     required: false
+   },
+   startDate: {
+     type: Date,
+     required: false
+   },
+   endDate: {
+     type: Date,
+     required: false
+   },
+   about: {
+     type: String,
+     required: true
+   }
+ }],
   projects: [{
     name: {
       type: String,
