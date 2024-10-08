@@ -4,7 +4,9 @@ const app = express();
 const dontenv = require('dotenv')
 const { register, login } = require('./controllers/authController');
 const cors = require('cors');
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const { updateUserProfile } = require('./routes/updateUserProfile');
+const { getUserData } = require('./routes/getUser');
 
 
 
@@ -29,8 +31,13 @@ app.get('/home', (req, res) => {
 app.post('/api/register', register);
 
 //Login user
-app.post('/api/login', login)
- 
+app.post('/api/login', login);
+
+//Update user profile
+app.post('/profile/update/:userid', updateUserProfile);
+
+//Get user data
+app.get('/get/userdata/:userid', getUserData);
 
 app.listen(process.env.PORT || 5000, () => {
   console.log(`Server running on port ${process.env.PORT}`);

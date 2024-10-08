@@ -2,6 +2,7 @@
  
  body{
   overflow-x: hidden;
+  background-color: #F8F8F8;
  }
  .navbar{
   width: 100%;
@@ -371,6 +372,7 @@ padding-left: 190px;
 }
 .form-container{
   width: 100%;
+  background-color: #F8F8F8;
 }
 .TextField{
   font-family: "satoshi";
@@ -400,14 +402,15 @@ padding-left: 190px;
   background-color: #0077ff38 !important;
 }
 .prj-lable{
-  color: #fff;
+  /* color: #fff;
   background-color: #01397ade;
   width: 10%;
   text-align: center;
   padding: 4px;
   border: 1px solid #002f6484;
   box-shadow: 1px 1px 2px #00000068;
-  border-radius: 500px;
+  border-radius: 500px; */
+  color: #052F5F;
 }
 .skills-container{
 background-color: #1976d215;

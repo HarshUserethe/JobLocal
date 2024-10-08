@@ -45,7 +45,7 @@ const userSchema = mongoose.Schema({
     type: Date,
     required: false
   },
-  permanentAddress: [{
+  permanentAddress: {
     houseNo: {
       type: String,
       required: false
@@ -62,8 +62,8 @@ const userSchema = mongoose.Schema({
       type: Number,
       required: false
     },
-  }],
-  currentAddress: [{
+  },
+  currentAddress: {
     houseNo: {
       type: String,
       required: false
@@ -80,12 +80,17 @@ const userSchema = mongoose.Schema({
       type: Number,
       required: false
     },
-  }],
+  },
   gender: {
     type: String,
     enum: ['Male', 'Female', 'Other'],
     required: false
   },
+  jobSector: {
+    type: String,
+    required: false,
+    default: null
+   },
   objective: {
     type: String,
     required: false
@@ -134,7 +139,7 @@ const userSchema = mongoose.Schema({
      required: true
    }
  }],
-  projects: [{
+  project: [{
     name: {
       type: String,
       required: false
@@ -160,24 +165,24 @@ const userSchema = mongoose.Schema({
     type: [String],
     required: false
   },
-  certificates: [{
-    name: {
-      type: String,
-      required: false
-    },
-    completion_id: {
-      type: String,
-      required: false
-    },
-    url: {
-      type: String,
-      required: false
-    },
-    cert_validity: {
-      type: Date,
-      required: false
-    }
-  }],
+  // certificates: [{
+  //   name: {
+  //     type: String,
+  //     required: false
+  //   },
+  //   completion_id: {
+  //     type: String,
+  //     required: false
+  //   },
+  //   url: {
+  //     type: String,
+  //     required: false
+  //   },
+  //   cert_validity: {
+  //     type: Date,
+  //     required: false
+  //   }
+  // }],
   links: {
     github: {
       type: String,
@@ -200,7 +205,7 @@ const userSchema = mongoose.Schema({
     type: String,
     enum: ['Full-Time', 'Part-Time', 'Internship', 'Contract'],
     required: false
-  }
+  },
 }, {timestamps: true});
 
 
