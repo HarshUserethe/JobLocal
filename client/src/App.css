@@ -374,6 +374,14 @@ padding-left: 190px;
   width: 100%;
   background-color: #F8F8F8;
 }
+.form-main-div{
+  display: flex;
+}
+.form-sidebar{
+  width: 25%;
+  background-color: red;
+  display: none;
+}
 .TextField{
   font-family: "satoshi";
 }
@@ -440,7 +448,7 @@ align-items: center;
   display: flex;
   gap: 25px;
   margin-top: 30px;
-  justify-content: center;
+  justify-content: start;
 }
 .btnstyle{
 padding-left: 50px !important;
