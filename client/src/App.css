@@ -352,7 +352,8 @@ line-height: 70px
 .form-top{
 width: 100%;
 height: 20%;
-background-color: #052F5F;
+/* background-color: #052F5F; */
+background-image: url(./assets/Shiny.svg);
 color: #fff;
 padding-top: 70px;
 padding-bottom: 70px;
@@ -453,4 +454,37 @@ align-items: center;
 .btnstyle{
 padding-left: 50px !important;
 padding-right: 50px !important;
+}
+.file-info{
+  display: flex;
+  gap: 12px;
+  color: gray;
+  margin-bottom: 10px;
+}
+.note{
+  color: gray;
+  font-weight: 400;
+  font-size: .8rem;
+  margin-top: 10px;
+}
+.bline{
+  width: 100%;
+  height: 2px;
+  border-top: 2px dotted #dfdfdf;
+  margin-top: 30px;
+}
+.isUploaded{
+  margin-top: 10px;
+  color: rgb(1, 160, 1);
+  font-style: italic;
+  font-size: .8rem;
+}
+.verify-stuf{
+  padding-top: 5px;
+}
+.sv1{
+  color: blue;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) .5s;
+  font-style: italic;
+  font-size: .7rem;
 }
