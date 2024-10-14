@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import '../App.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+const fetchUri = import.meta.env.VITE_FETCH_URI;
+
 
 
 const style = {
@@ -24,7 +26,6 @@ const style = {
 const LoginForm = ({handleClose, open}) => {
 
    const navigate = useNavigate();
-
    const [err2, setErr2] = useState('');
    const [err, setErr] = useState('');
    const [otp, setOtp] = useState('');
@@ -39,10 +40,11 @@ const LoginForm = ({handleClose, open}) => {
     }
   };
 
-const handleSubmit = async () => {
+const handleSubmit = async (e) => {
+  e.preventDefault();
   try {
     setLoading(true)
-    const response = await fetch('http://localhost:5000/api/login', {
+    const response = await fetch(`http://${fetchUri}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

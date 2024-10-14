@@ -10,6 +10,21 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { styled } from "@mui/material/styles";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+const fetchUri = import.meta.env.VITE_FETCH_URI;
+
+const VisuallyHiddenInput = styled("input")({
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
+  height: 1,
+  overflow: "hidden",
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  whiteSpace: "nowrap",
+  width: 1,
+});
 
 import {
   Container,
@@ -26,11 +41,18 @@ import {
 } from "@mui/material";
 import { fontSize } from "@mui/system";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const ProfileForm = () => {
   const navigate = useNavigate();
   const notify = () => toast("Profile Updated Successfully");
   const { userid } = useParams();
+  const [isResumeLink, setResumeLink] = useState('');
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSent, setIsSent] = useState(false)
+
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const [formData, setFormData] = useState({
     fullname: "",
@@ -87,11 +109,65 @@ const ProfileForm = () => {
       other: "",
     },
     jobType: "",
+    resumeLink: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
   const [userInfo, setUserInfo] = useState(null);
   const [fullName, setFullName] = useState("JOBSEEKER");
+  const [fileInfo, setFileInfo] = useState({
+    name: 'No file selected',
+    size: '',
+  });
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      // Check if the file type is allowed
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        alert('Only PDF, DOC, and DOCX files are allowed!');
+        return;
+      }
+      //Generate unique id
+      // let uniqueId = Math.floor(1000000 + Math.random() * 9000000).toString();
+     
+     // Update file information and resume link in formData
+     setFormData((prevFormData) => ({
+        ...prevFormData,
+        resumeLink: "./uploads/"+ userid + file.name,  // Set file name in formData
+      }));
+
+      // Update file info state
+      setFileInfo({
+        name: file.name,
+        size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',  // Convert size to MB
+      });
+
+      setSelectedFile(file);  // Save the selected file for upload
+      
+    }
+  };
+
+  const handleSubmitResumeFile = async() => {
+    const userId = userid
+    try {
+      const formData2 = new FormData();
+      formData2.append('resume', selectedFile); // Append the file to FormData
+
+      // Send the file to the server using axios
+      const response = await axios.post(`http://${fetchUri}/upload/${userId}`, formData2, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Important for file uploads
+        },
+      });
+
+      console.log(response.data); // Optional: Log the response data
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -249,7 +325,7 @@ const ProfileForm = () => {
   const handleFormSubmit = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/profile/update/${userid}`,
+        `http://${fetchUri}/profile/update/${userid}`,
         {
           method: "POST",
           headers: {
@@ -266,6 +342,7 @@ const ProfileForm = () => {
         alert("Error occured");
       }
 
+      handleSubmitResumeFile();
       notify();
       fetchUserProfileData();
     } catch (error) {
@@ -287,12 +364,14 @@ const ProfileForm = () => {
   const fetchUserProfileData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/get/userdata/${userid}`
+        `http://${fetchUri}/get/userdata/${userid}`
       );
       const userData = response.data;
 
       setUserInfo(userData);
       setFullName(userData.fullname);
+      setResumeLink(userData.resumeLink);
+      setIsEmailVerified(userData.emailVerified);
       // Update form data
       setFormData({
         fullname: userData.fullname || " ",
@@ -354,9 +433,27 @@ const ProfileForm = () => {
     fetchUserProfileData();
   }, [userid]);
 
+ const handleVerifyEmail = async () => {
+  try {
+     if(userid){
+      setIsLoading(true);
+      const response = await axios.get(`http://${fetchUri}/sent/${userid}`);  // Replace with your backend URL
+      console.log(response.data);
+      setIsSent(true);
+      setIsLoading(false);
+     }else{
+      alert("user not found");
+     }
+    } catch (error) {
+      console.error('Error sending verification email:', error);
+      alert('Error sending verification email.');
+    }
+ }
+
   return (
     <>
       <TopNavigation />
+      {/* <Header/> */}
       <ToastContainer />
       <div className="form-top">
         <h1>
@@ -412,6 +509,14 @@ const ProfileForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                   />
+                <div className="verify-stuf">
+                {
+                  isEmailVerified ? <Button color="success" size="small">Email Verified</Button> : <Button onClick={handleVerifyEmail} color="error" size="small">{isSent ? <span style={{color:"green"}}>Link Sent</span> : <span>Verify Email</span>}</Button>
+                }
+                {
+                  isLoading ? <p className="sv1">Sending Verification Link ...</p> : ""
+                }
+                </div>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -1129,6 +1234,43 @@ const ProfileForm = () => {
                   />
                 </Grid>
 
+                {/* RESUME UPLOAD FORM */}
+                <div className="bline"></div>
+                <Grid item xs={12}>
+      <Typography className="formSection" variant="h6" gutterBottom>
+        Attach Resume
+      </Typography>
+
+      <Grid item xs={12} sm={6}>
+        <div className="resume-upload">
+          <div className="file-info">
+            <div className="filename">{fileInfo.name}</div>
+            <div className="filesize">{fileInfo.size}</div>
+          </div>
+
+          <Button
+            component="label"
+            variant="contained"
+            // style={{ backgroundColor: "#BF40BF" }}
+            color="primary"
+            startIcon={<CloudUploadIcon />}
+          >
+            Upload files
+            <input
+              type="file"
+              hidden
+              accept=".pdf,.doc,.docx"
+              onChange={handleFileChange}
+            />
+          </Button>
+          {
+            isResumeLink !== null ? <div className="isUploaded">You already uploaded your resume. to change upload it again or to view <span style={{color: "blue", fontStyle:"italic", textDecoration:"underline"}}>Click Here.</span></div> : ""
+          }
+          <div className="note">Supported formats: doc, docx, pdf, up to 2MB</div>
+        </div>
+      </Grid>
+    </Grid>
+                <div className="bline"></div>
                 <Grid item xs={12}>
                   <div className="btns-container">
                     <Button

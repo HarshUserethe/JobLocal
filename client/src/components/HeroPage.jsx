@@ -4,11 +4,25 @@ import breakerSVG from "../assets/wave.svg";
 import Button from 'react-bootstrap/Button';
 import { GrDocumentText } from "react-icons/gr";
 import CursorFollower from "./CursorFollower";
+import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 
 const HeroPage = () => {
+  const location = useLocation();
+  const message = location.state?.message;
+  
+   useEffect(() => {
+    if(message){
+      const notify = () => toast(message);
+      notify();
+    }
+   }, [])
   return (
     <div className="heropage-body">
+    <ToastContainer />
     <CursorFollower />
     <div className="overlay">
     <div className="text-content">

@@ -4,9 +4,8 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import OtpInput from 'react-otp-input';
-import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-import { auth } from '../firebase/firebase_config';
 import { useNavigate } from "react-router-dom";
+const fetchUri = import.meta.env.VITE_FETCH_URI;
 
 const style = {
   position: 'absolute',
@@ -41,47 +40,6 @@ const RegForm = ({ handleRegClose, regOpen }) => {
     }
   }, [regOpen]);
 
-  const setupRecaptcha = () => {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-        'size': 'invisible',
-        'callback': (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          handleSendOtp();
-        }
-      });
-    }
-  };
-
-  const handleSendOtp = async () => {
-    try {
-      setupRecaptcha();
-      const formattedPhoneNumber = `+91${phoneNumber}`; // Assuming Indian phone numbers
-      const appVerifier = window.recaptchaVerifier;
-      const confirmation = await signInWithPhoneNumber(auth, formattedPhoneNumber, appVerifier);
-      setConfirmationResult(confirmation);
-      setIsSubmit(true);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error sending OTP:", error);
-      setErr2("Failed to send OTP. Please try again.");
-      setLoading(false);
-    }
-  };
-
-  const handleVerifyCode = async () => {
-    try {
-      await confirmationResult.confirm(otp);
-      // Phone number verified successfully
-      console.log("Phone number verified!");
-      // Here you can proceed with user registration or login
-      handleRegClose();
-    } catch (error) {
-      console.error("Error verifying OTP:", error);
-      setErr2("Invalid OTP. Please try again.");
-    }
-  };
-
   const checkPhoneNumber = (value) => {
     if (value.length === 10) {
       setErr('');
@@ -104,7 +62,7 @@ const RegForm = ({ handleRegClose, regOpen }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/register', {
+      const response = await fetch(`http://${fetchUri}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
