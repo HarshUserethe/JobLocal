@@ -44,7 +44,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     setLoading(true)
-    const response = await fetch(`http://${fetchUri}/api/login`, {
+    const response = await fetch(`https://${fetchUri}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
