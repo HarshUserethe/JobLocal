@@ -342,7 +342,13 @@ const ProfileForm = () => {
         alert("Error occured");
       }
 
-      handleSubmitResumeFile();
+      //checking user selected resume file or not
+      if(selectedFile){
+        handleSubmitResumeFile();  
+      }else{
+        console.log("User hasn't submit resume.")
+      }
+
       notify();
       fetchUserProfileData();
     } catch (error) {
@@ -374,54 +380,54 @@ const ProfileForm = () => {
       setIsEmailVerified(userData.emailVerified);
       // Update form data
       setFormData({
-        fullname: userData.fullname || " ",
-        objective: userData.objective || " ",
-        email: userData.email || " ",
-        phone: userData.phone || " ",
+        fullname: userData.fullname || "",
+        objective: userData.objective || "",
+        email: userData.email || "",
+        phone: userData.phone || "",
         gender: userData.gender || "Not Specified",
         jobSector: userData.jobSector || "Not Specified",
         jobType: userData.jobType || "Not Specified",
-        DOB: formatDate(userData.DOB) || " ", // Ensure this is formatted correctly if needed
+        DOB: formatDate(userData.DOB) || null, // Ensure this is formatted correctly if needed
         permanentAddress: {
-          houseNo: userData.permanentAddress?.houseNo || " ",
+          houseNo: userData.permanentAddress?.houseNo || "",
           city: userData.permanentAddress?.city || "Not Specified",
           state: userData.permanentAddress?.state || "Not Specified",
-          pin: userData.permanentAddress?.pin || " ",
+          pin: userData.permanentAddress?.pin || "",
         },
         currentAddress: {
-          houseNo: userData.currentAddress?.houseNo || " ",
+          houseNo: userData.currentAddress?.houseNo || "",
           city: userData.currentAddress?.city || "Not Specified",
           state: userData.currentAddress?.state || "Not Specified",
-          pin: userData.currentAddress?.pin || " ",
+          pin: userData.currentAddress?.pin || "",
         },
         sameAsPermAddress: userData.sameAsPermAddress || false,
         education: {
-          degree: userData.education[0]?.degree || " ",
-          stream: userData.education[0]?.stream || " ",
-          institute: userData.education[0]?.institute || " ",
-          year: userData.education[0]?.year || " ",
-          cgpa: userData.education[0]?.cgpa || " ",
+          degree: userData.education[0]?.degree || "",
+          stream: userData.education[0]?.stream || "",
+          institute: userData.education[0]?.institute || "",
+          year: userData.education[0]?.year || "",
+          cgpa: userData.education[0]?.cgpa || "",
         },
         workExperience: userData.workExperience?.map((work) => ({
-          role: work.role || " ",
-          company: work.company || " ",
-          startDate: formatDate(work.startDate) || " ",
-          endDate: formatDate(work.endDate) || " ",
-          about: work.about || " ",
-        })) || [{}],
+          role: work.role || "",
+          company: work.company || "",
+          startDate: work.startDate ? formatDate(work.startDate) : null,
+          endDate: work.endDate ? formatDate(work.endDate) : null,
+          about: work.about || "",
+        })) || [],
         project: userData.project?.map((proj) => ({
-          name: proj.name || " ",
-          start: formatDate(proj.start) || " ",
-          end: formatDate(proj.end) || " ",
-          about: proj.about || " ",
-          link: proj.link || " ",
-        })) || [{}],
+          name: proj.name || "",
+          start: proj.start ? formatDate(proj.start) : null,
+          end: proj.end ? formatDate(proj.end) : null,
+          about: proj.about || "",
+          link: proj.link || "",
+        })) || [],
         keySkills: userData.keySkills || [],
         links: {
-          github: userData.links?.github || " ",
-          linkedin: userData.links?.linkedin || " ",
-          portfolio: userData.links?.portfolio || " ",
-          other: userData.links?.other || " ",
+          github: userData.links?.github || "",
+          linkedin: userData.links?.linkedin || "",
+          portfolio: userData.links?.portfolio || "",
+          other: userData.links?.other || "",
         },
       });
     } catch (error) {
@@ -1251,6 +1257,7 @@ const ProfileForm = () => {
           <Button
             component="label"
             variant="contained"
+            style={{width:"23vw", fontSize:"1rem", height:"3vw"}}
             // style={{ backgroundColor: "#BF40BF" }}
             color="primary"
             startIcon={<CloudUploadIcon />}
