@@ -206,6 +206,11 @@ const userSchema = mongoose.Schema({
     enum: ['Full-Time', 'Part-Time', 'Internship', 'Contract'],
     required: false
   },
+  resumeLink: {
+    type: String,
+    required: false,
+    default: null
+  }
 }, {timestamps: true});
 
 
