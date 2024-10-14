@@ -62,7 +62,7 @@ const RegForm = ({ handleRegClose, regOpen }) => {
     }
 
     try {
-      const response = await fetch(`http://${fetchUri}/api/register`, {
+      const response = await fetch(`https://${fetchUri}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
