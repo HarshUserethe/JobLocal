@@ -157,7 +157,7 @@ const ProfileForm = () => {
       formData2.append('resume', selectedFile); // Append the file to FormData
 
       // Send the file to the server using axios
-      const response = await axios.post(`https://${fetchUri}/upload/${userId}`, formData2, {
+      const response = await axios.post(`${fetchUri}/upload/${userId}`, formData2, {
         headers: {
           'Content-Type': 'multipart/form-data', // Important for file uploads
         },
@@ -325,7 +325,7 @@ const ProfileForm = () => {
   const handleFormSubmit = async () => {
     try {
       const response = await fetch(
-        `https://${fetchUri}/profile/update/${userid}`,
+        `${fetchUri}/profile/update/${userid}`,
         {
           method: "POST",
           headers: {
@@ -364,7 +364,7 @@ const ProfileForm = () => {
   const fetchUserProfileData = async () => {
     try {
       const response = await axios.get(
-        `https://${fetchUri}/get/userdata/${userid}`
+        `${fetchUri}/get/userdata/${userid}`
       );
       const userData = response.data;
 
@@ -437,7 +437,7 @@ const ProfileForm = () => {
   try {
      if(userid){
       setIsLoading(true);
-      const response = await axios.get(`https://${fetchUri}/sent/${userid}`);  // Replace with your backend URL
+      const response = await axios.get(`${fetchUri}/sent/${userid}`);  // Replace with your backend URL
       console.log(response.data);
       setIsSent(true);
       setIsLoading(false);
