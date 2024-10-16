@@ -517,7 +517,7 @@ const ProfileForm = () => {
                   />
                 <div className="verify-stuf">
                 {
-                  isEmailVerified ? <Button color="success" size="small">Email Verified</Button> : <Button onClick={handleVerifyEmail} color="error" size="small">{isSent ? <span style={{color:"green"}}>Link Sent</span> : <span>Verify Email</span>}</Button>
+                  isEmailVerified ? <Button color="success" size="small">Email Verified</Button> : <Button onClick={handleVerifyEmail} color="error" size="small">{isSent ? <span style={{color:"green"}}>Link Sent</span> : <span>Please Verify Email</span>}</Button>
                 }
                 {
                   isLoading ? <p className="sv1">Sending Verification Link ...</p> : ""
