@@ -1,17 +1,20 @@
 const userModel = require('../models/users');
 const nodemailer = require('nodemailer');
+const otpModel = require('../models/userotp');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
+ 
 
 // Register user
 exports.register = async (req, res) => {
 
   try {
-    const { fullname, phone, email, password } = req.body;
+     const { fullname, phone, email, password, otp } = req.body;
 
-     if(!fullname || !email || !phone || !password){
+     //checking input fields
+     if(!fullname || !email || !phone || !password || !otp){
        return res.status(400).json({success:false,message:"All fileds are required"})
      }
     // Check if user exists
@@ -20,7 +23,7 @@ exports.register = async (req, res) => {
     if (user || userPhone) return res.status(400).json({ msg: 'User already exists', err:"The email address or phone number you entered is already in use. Please try another or log in to your existing account." });
 
     const hashpassword = await bcrypt.hashSync(password, 10);
-    // const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
     // const userid = uuidv4();
    
     //User current ip ---->
@@ -29,33 +32,44 @@ exports.register = async (req, res) => {
     const dataRes = await fetchData.json();
     userip = await dataRes.ip;
 
-    //Phone OTP Generation ----->
-    const phoneOTP = Math.floor(1000 + Math.random() * 9000).toString();
+   //otp verification proccess
+   const storedOtpEntry = await otpModel.findOne({ phone });
+   if (!storedOtpEntry) {
+     return res.status(400).json({ success: false, message: "OTP not found. Please request a new OTP." });
+   }
 
-    user = new userModel({userip, fullname, email, phone, hashpassword });
+   // Check if the entered OTP matches the stored OTP
+   if (storedOtpEntry.otp !== otp) {
+     return res.status(400).json({ success: false, message: "Invalid OTP" });
+   }
+   
+ 
+      user = new userModel({userip, fullname, email, phone, hashpassword});
 
-    // Save user
-    await user.save();
+      // Save user
+      await user.save();
+      
+      // Generate JWT token
+        const payload = {
+          id: user._id,
+          phone: user.phone
+        };
+      
+      // Generate JWT token
+      jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' }, (err, token) => {
+      if (err) throw err;
+      
+      // Respond with success and user ID along with the token
+      res.status(200).json({
+        status: "Successfully Registered",
+        token, // include the token here
+        user: {
+            userid: user._id,
+        }
+      });
+      });
 
-   // Generate JWT token
-      const payload = {
-        id: user._id,
-        phone: user.phone
-      };
 
-   // Generate JWT token
-jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' }, (err, token) => {
-  if (err) throw err;
-
-  // Respond with success and user ID along with the token
-  res.status(200).json({
-      status: "Successfully Registered",
-      token, // include the token here
-      user: {
-          userid: user._id,
-      }
-  });
-});
 
   } catch (err) {
     console.log(err)
