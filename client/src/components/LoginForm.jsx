@@ -6,7 +6,9 @@ import Button from '@mui/material/Button';
 import '../App.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import OtpInput from 'react-otp-input';
 const fetchUri = import.meta.env.VITE_FETCH_URI;
+import axios from 'axios';
 
 
 
@@ -31,6 +33,7 @@ const LoginForm = ({handleClose, open}) => {
    const [otp, setOtp] = useState('');
    const [phoneNumber, setPhoneNumber] = useState(null)
    const [loading, setLoading] = useState(false)
+   const [otpContainer, setOtpContianer] = useState(false);
  
    const checkPhoneNumber = (value) => {
     if (value.length === 10) {
@@ -39,6 +42,29 @@ const LoginForm = ({handleClose, open}) => {
       setErr("Please enter a valid 10-digit phone number.");
     }
   };
+
+  const handleOTPSent = async (e) => {
+    e.preventDefault()
+
+    try {
+    setLoading(true)
+    const mobileNumber = phoneNumber;
+
+    const response = await axios.post(`${fetchUri}/login/sentotp`,{
+      phone: mobileNumber,
+    });
+  
+    if(response.status === 200){
+      setOtpContianer(true);
+    }
+    setLoading(false);
+
+    } catch (error) {
+    console.log(error)
+    setLoading(false)
+    setErr2(error.response.data.message)
+    }
+  }
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -85,7 +111,11 @@ const handleSubmit = async (e) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        {/* LOGIN MAIN BOX */}
+
+        {
+          !otpContainer ? 
+            <Box sx={style}>
           <div className="btn-wrappers" style={{display:"flex", flexDirection:"column"}}>
           <h3 style={{fontWeight: "500", fontSize: "1.4rem"}}>Please Log-in your account.</h3>
           <h3 style={{fontSize:".7rem", color:"gray"}}>Login with your registerd mobile number.</h3>
@@ -97,10 +127,7 @@ const handleSubmit = async (e) => {
               <TextField onChange={(e) => {setPhoneNumber(e.target.value), checkPhoneNumber(e.target.value)}} className="outlined-basic" size='small' name='phone' label="Phone Number" type='Number' variant="outlined" style={{ width: "17.5vw" }}   sx={{ input: { color: err ? "red" : "green" } }} />
               <div className="error" style={{display: err2 ? "block" : "none"}}>{err2}</div>
               <div className="error" style={{ display: err ? "block" : "none" }}>{err}</div>
-              <Button onClick={handleSubmit} variant="contained" style={{ width: "17.5vw" }}>{loading ? "LOADING..." : "SEND OTP"}</Button>
-              <div className="otp-cont">
-
-              </div>
+              <Button onClick={handleOTPSent} variant="contained" style={{ width: "17.5vw" }}>{loading ? "LOADING..." : "SEND OTP"}</Button>
               <span style={{fontSize:".9rem", color:"gray", textAlign:"center"}}>Don't have an account? <span style={{color:"blue", cursor:"pointer"}}>Create your account now.</span></span>
             </form>
 
@@ -108,6 +135,43 @@ const handleSubmit = async (e) => {
           </div>
           
         </Box>
+           : 
+            <div className="otp-container">
+             <div className="center-otp-div">
+             <div className="otp-head">
+              <h4>Enter 4 Digit OTP Code</h4>
+              <p>OTP code sent to your registerd number.</p>
+             </div>
+             <OtpInput
+                value={otp}
+                onChange={setOtp}
+                numInputs={4}
+                renderSeparator={<span>-</span>}
+                renderInput={(props) => <input {...props} />}
+                inputStyle={{
+                  border: "1px solid #1976D2",
+                  borderRadius: "8px",
+                  width: " 50px",
+                  height: "50px",
+                  fontSize: "16px",
+                  color: "#000",
+                  fontWeight: "400",
+                  caretColor: "blue"
+                }}
+              />
+             <div className="otp-wrapper">
+              <Button onClick={handleSubmit} variant="contained" style={{ width: "225px", height:"45px", marginTop: "20px" }}>
+                VERIFY OTP
+              </Button>
+             <p>Never share your OTP with anyone</p>
+             </div>
+             </div>
+            </div>
+         
+        }
+
+
+
       </Modal>
     </div>
   )

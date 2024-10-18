@@ -12,13 +12,20 @@ import UserResume from "../components/UserResume";
 import UserHome from "../components/UserHome";
 import UserSupport from "../components/UserSupport";
 import UserCredits from "../components/UserCredits";
- 
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto'; 
+import ProfileModal from "../components/ProfileModal";
+const fetchUri = import.meta.env.FETCH_URI;
+import axios from 'axios';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
   const [userid, setUserid] = useState();
   const [state, setState] = useState('Home');
   const id = useParams()
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+
  
   useEffect(() => {
     const findUserId = () => {
@@ -66,12 +73,17 @@ const UserDashboard = () => {
 
   }
 
+ 
+
   return (
     <div>
       <Header />
       <div className="grid-container">
         <div className="container-item" id="user-profile-area" style={{ backgroundColor: "#F8F9FA" }}>
           <div className="proflie-card">
+          <div className="cam-logo" onClick={handleOpen} title="Upload profile picture">
+          <AddAPhotoIcon className="camera-icon" style={{cursor:"pointer", fontSize:".8rem", color:"gray"}} />
+          </div>
             <Avatar
               alt="Remy Sharp"
               src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -99,6 +111,7 @@ const UserDashboard = () => {
           3
         </div>
       </div>
+      <ProfileModal open={open} setOpen={setOpen} />
     </div>
   );
 };

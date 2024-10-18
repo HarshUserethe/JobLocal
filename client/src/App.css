@@ -123,6 +123,7 @@ padding: 20px;
   text-decoration: none;
   font-weight: 500;
   z-index: 9;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) .5s;
  }
  #loginbutton{
   font-weight: 500;
@@ -158,8 +159,8 @@ padding: 20px;
  }
  
  .navlist-col:hover{
-  color: #fff;
-  text-decoration: underline;
+  color: #ff8a00;
+  font-size: 1.2rem;
  }
 
  .heropage-body{
@@ -340,14 +341,56 @@ line-height: 70px
   background-color: #1976D2;
 }
 .otp-container{
-  height: 10vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 20px;
 }
-
+.center-otp-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  width: 400px;
+  height: 300px;
+  border-radius: 8px;
+  border: 2px solid #1976D2;
+}
+.otp-wrapper{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.otp-wrapper>p{
+  font-size: .8rem;
+  color: #5b5b5b;
+  font-weight: 300;
+}
+.otp-head>h4{
+  font-family: 'satoshi';
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.otp-head>p{
+  font-size: .9rem;
+  color: #000;
+  font-family: 'satoshi';
+  font-weight: 400;
+}
+.otp-head{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  text-align: center;
+  line-height: 80%;
+}
 /* PROFILE UPDATE FORM CSS  */
 .form-top{
 width: 100%;
@@ -643,3 +686,32 @@ color: #000;
   border: 1px solid #dfdfdf;
   box-shadow: 1px 1px 5px #7d7d7d11;}
 
+  .camera-icon:hover{
+    color: #000 !important;
+  }
+  .cam-logo{
+   width: 25%;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+  }
+  .drag-area{
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px dashed #000;
+  }
+  .stepperConatiner{
+   width: 80%;
+  }
+  .stepper-main{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+  }
+
+.MuiStepLabel-labelContainer >.MuiStepLabel-label{
+  font-family: "satoshi";
+  font-size: 1rem;
+}
+ 

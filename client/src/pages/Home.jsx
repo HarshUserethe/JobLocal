@@ -4,7 +4,7 @@ import Aboutus from "./Aboutus";
 import { LocomotiveScrollProvider } from "react-locomotive-scroll";
 import { useRef } from "react";
 import '../locomotive-scroll.css';
-import CursorFollower from "../components/CursorFollower";
+
 
 const Home = () => {
 
@@ -28,7 +28,7 @@ const Home = () => {
         watch={[]} // Add any props you want to watch here (for now, it's an empty array)
       >
         <main data-scroll-container ref={ref}>
-          <CursorFollower />
+         
           <TopNavigation />
           <HeroPage />
           <Aboutus />

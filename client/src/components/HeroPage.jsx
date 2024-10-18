@@ -3,7 +3,6 @@ import HeroImage from "../assets/new.png";
 import breakerSVG from "../assets/wave.svg";
 import Button from 'react-bootstrap/Button';
 import { GrDocumentText } from "react-icons/gr";
-import CursorFollower from "./CursorFollower";
 import { useLocation } from 'react-router-dom';
 import { useEffect } from "react";
 import { ToastContainer, toast } from 'react-toastify';
@@ -14,16 +13,16 @@ const HeroPage = () => {
   const location = useLocation();
   const message = location.state?.message;
   
-   useEffect(() => {
-    if(message){
-      const notify = () => toast(message);
-      notify();
-    }
-   }, [])
+  //  useEffect(() => {
+  //   if(message){
+  //     const notify = () => toast(message);
+  //     notify();
+  //   }
+  //  }, [])
+
   return (
     <div className="heropage-body">
-    <ToastContainer />
-    <CursorFollower />
+    {/* <ToastContainer /> */}
     <div className="overlay">
     <div className="text-content">
       <div className="rnd-line clr"><span>Local Jobs, Bright Careers</span></div>

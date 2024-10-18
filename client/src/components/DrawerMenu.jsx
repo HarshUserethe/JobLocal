@@ -69,7 +69,7 @@ const [activeItem, setActiveItem] = useState('Home');
   )
 }
 
-DrawerMenu.PropTypes= {
+DrawerMenu.propTypes= {
 setState: PropTypes.func.isRequired,
 }
 
