@@ -16,7 +16,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
 import Box from "@mui/material/Box";
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete from "@mui/material/Autocomplete";
 const fetchUri = import.meta.env.VITE_FETCH_URI;
 
 const steps = [
@@ -61,6 +61,12 @@ const ProfileForm = () => {
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
   const [isoCode, setIsoCode] = useState();
+  const [IOScode, setISOcode] = useState("MP");
+  const [degreeData, setDegreeData] = useState([]);
+  const [streamsData, setStreamsData] = useState([]);
+  const [selectedDegree, setSelectedDegree] = useState("");
+  const [availableStreams, setAvailableStreams] = useState([]);
+  const [collegeData, setCollegeData] = useState([]);
 
   //states of india here --->
   useEffect(() => {
@@ -71,8 +77,10 @@ const ProfileForm = () => {
 
   //fetching cities of state
   useEffect(() => {
-    setCityData(City.getCitiesOfCountry("IN"));
-  }, []);
+    if (IOScode) {
+      setCityData(City.getCitiesOfState("IN", IOScode));
+    }
+  }, [IOScode]);
 
   const navigate = useNavigate();
   const notify = () => toast("Profile Updated Successfully");
@@ -144,7 +152,6 @@ const ProfileForm = () => {
     resumeLink: "",
   });
 
- 
   const [errorMessage, setErrorMessage] = useState("");
   const [userInfo, setUserInfo] = useState(null);
   const [fullName, setFullName] = useState("JOBSEEKER");
@@ -202,7 +209,7 @@ const ProfileForm = () => {
           },
         }
       );
-      
+
       console.log(response.data); // Optional: Log the response data
     } catch (error) {
       console.error(error);
@@ -216,8 +223,6 @@ const ProfileForm = () => {
       [name]: value,
     }));
   };
-
-  const [IOScode, setISOcode] = useState(null);
 
   const handleAddressChange = (type, e) => {
     const { name, value } = e.target;
@@ -238,17 +243,32 @@ const ProfileForm = () => {
     }));
   };
 
-  const handleEducationChange = (event, value) => {
+  const handleEducationChange = (event, value, reason, name) => {
+    const inputName = name || event.target.name; // Fallback to event.target.name if name is not provided
     // Ensure value is set correctly in the formData
     setFormData((prevState) => ({
       ...prevState,
       education: {
         ...prevState.education,
-        degree: value || '', // Set selected value or an empty string
+        [inputName]: value || "", // Use the input field name to update the corresponding state
+      },
+    }));
+
+    setSelectedDegree(value);
+  };
+
+  const handleEducationChangeTwo = (event) => {
+    const { name, value } = event.target; // Get name and value directly from the event
+
+    // Ensure value is set correctly in the formData
+    setFormData((prevState) => ({
+      ...prevState,
+      education: {
+        ...prevState.education,
+        [name]: value || "", // Update the state with the new value
       },
     }));
   };
-
 
   const handleSameAddressCheck = (e) => {
     const { checked } = e.target;
@@ -375,6 +395,7 @@ const ProfileForm = () => {
 
   const handleFormSubmit = async () => {
     try {
+      console.log(formData);
       const response = await fetch(`${fetchUri}/profile/update/${userid}`, {
         method: "POST",
         headers: {
@@ -396,8 +417,8 @@ const ProfileForm = () => {
       } else {
         console.log("User hasn't submit resume.");
       }
-      console.log(formData)
-     
+      console.log(formData);
+
       fetchUserProfileData();
     } catch (error) {
       console.log(error);
@@ -568,23 +589,87 @@ const ProfileForm = () => {
   };
 
   //fetch degree - diploma list
-const [degreeData, setDegreeData] = useState([]);
-useEffect(() => {
-  const handleFetchDegree = async () => {
-    try {
-      const response = await axios.get('/src/apis/degrees_and_diplomas.json');
-      const data = response.data;
-      setDegreeData(data.degrees_and_diplomas)     
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
 
-  handleFetchDegree();
- 
-}, [degreeData])
-  
- 
+  useEffect(() => {
+    const handleFetchDegree = async () => {
+      try {
+        const response = await axios.get("/src/apis/degrees_and_diplomas.json");
+        const data = response.data;
+        setDegreeData(data.degrees_and_diplomas);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    handleFetchDegree();
+  }, [degreeData]);
+
+  useEffect(() => {
+    const handleFetchStreams = async () => {
+      try {
+        const response = await axios.get("/src/apis/streams.json");
+        const data = response.data;
+        setStreamsData(data.streams);
+        // Flatten all streams for default display
+        setAvailableStreams(
+          data.streams.flatMap((degree) =>
+            degree.streams.map((stream) => ({
+              id: stream.id,
+              name: stream.name,
+            }))
+          )
+        );
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    handleFetchStreams();
+  }, []);
+
+  useEffect(() => {
+    if (selectedDegree) {
+      const degreeData = streamsData.find(
+        (degree) => degree.degree === selectedDegree
+      );
+      if (degreeData) {
+        setAvailableStreams(degreeData.streams);
+      }
+    } else {
+      // Show all streams if no degree is selected
+      setAvailableStreams(streamsData.flatMap((degree) => degree.streams));
+    }
+  }, [selectedDegree, streamsData]);
+
+  useEffect(() => {
+    const handleFetchColleges = async () => {
+      try {
+        const response = await axios.get("/src/apis/colleges.json");
+        const data = response.data;
+        setCollegeData(data.colleges);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    handleFetchColleges();
+  }, []);
+
+  const [fiveYears, setFiveYears] = useState([]);
+  useEffect(() => {
+    const currentYear = new Date(Date.now()).getFullYear();
+    const years = [];
+    for (let i = 4; i >= 0; i--) {
+      years.push(currentYear - i);
+    }
+
+    for (let i = 1; i <= 1; i++) {
+      years.push(currentYear + i);
+    }
+
+    setFiveYears(years);
+  }, []);
+
   return (
     <>
       {/* <Header/> */}
@@ -1037,60 +1122,156 @@ useEffect(() => {
                     </Typography>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    {/* <TextField
-                      fullWidth
-                      label="Degree"
-                      name="degree"
-                      value={formData.education.degree}
-                      onChange={handleEducationChange}
-                    /> */}
+                    {/* DEGREE SELECTION */}
                     <Autocomplete
-  disablePortal
-  options={degreeData || []}  // Ensure it's an empty array instead of empty string
-  name="degree"
-  value={formData.education.degree || null}  // Handle default value when no option is selected
-  onChange={handleEducationChange}
-  renderInput={(params) => <TextField {...params} label="Degree" />}
-  isOptionEqualToValue={(option, value) => option === value}  // Customize equality check
-  renderOption={(props, option) => (
-    <li 
-      {...props} 
-      style={{ 
-        ...props.style, // Maintain default styles
-        color: '#000', // Set text color to black
-      }}
-    >
-      {option}
-    </li>
-  )}
-/>
+                      disablePortal
+                      freeSolo
+                      options={degreeData || []}
+                      value={formData.education.degree || null}
+                      onChange={(event, value) =>
+                        handleEducationChange(event, value, null, "degree")
+                      }
+                      onInputChange={(event, value) => {
+                        // Handle freeSolo input when user types their own value
+                        handleEducationChange(event, value, null, "degree");
+                      }}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Degree" />
+                      )}
+                      isOptionEqualToValue={(option, value) => option === value}
+                      renderOption={(props, option) => (
+                        <li
+                          name="degree"
+                          {...props}
+                          key={option}
+                          style={{
+                            ...props.style,
+                            color: "#000",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {option}
+                        </li>
+                      )}
+                    />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="Stream"
+                    {/* Streams Autocomplete */}
+                    <Autocomplete
+                      disablePortal
+                      freeSolo
+                      options={availableStreams || []}
                       name="stream"
-                      value={formData.education.stream}
-                      onChange={handleEducationChange}
+                      value={
+                        availableStreams.find(
+                          (stream) => stream.name === formData.education.stream
+                        ) || null
+                      }
+                      onChange={(event, value) => {
+                        // Extract the name from the selected stream object
+                        let streamValue = value ? value.name : "";
+                        handleEducationChange(
+                          event,
+                          streamValue,
+                          null,
+                          "stream"
+                        );
+                      }}
+                      onInputChange={(event, value) => {
+                        // Handle freeSolo input when user types their own value
+                        handleEducationChange(event, value, null, "stream");
+                      }}
+                      getOptionLabel={(option) => option.name}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Stream" />
+                      )}
+                      isOptionEqualToValue={(option, value) =>
+                        option.id === value.id
+                      }
+                      renderOption={(props, option) => (
+                        <li
+                          {...props}
+                          key={option.id}
+                          style={{
+                            ...props.style,
+                            color: "#000",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {option.name}
+                        </li>
+                      )}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="Institute"
-                      name="institute"
-                      value={formData.education.institute}
-                      onChange={handleEducationChange}
+                    {/* INSTITUTE SELECTION */}
+                    <Autocomplete
+                      disablePortal
+                      freeSolo
+                      options={collegeData || []}
+                      value={formData.education.institute || null}
+                      onChange={(event, value) =>
+                        handleEducationChange(event, value, null, "institute")
+                      }
+                      onInputChange={(event, value) => {
+                        // Handle freeSolo input when user types their own value
+                        handleEducationChange(event, value, null, "institute");
+                      }}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Institute" />
+                      )}
+                      isOptionEqualToValue={(option, value) => option === value}
+                      renderOption={(props, option) => (
+                        <li
+                          name="institute"
+                          {...props}
+                          key={option}
+                          style={{
+                            ...props.style,
+                            color: "#000",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {option}
+                        </li>
+                      )}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <TextField
+                    {/* <TextField
                       fullWidth
                       label="Completion Year"
                       name="year"
                       type="number"
                       value={formData.education.year}
-                      onChange={handleEducationChange}
+                      onChange={handleEducationChangeTwo}
+                    /> */}
+                    <Autocomplete
+                      disablePortal
+                      options={fiveYears || []}
+                      value={formData.education.year || null}
+                      onChange={(event, value) =>
+                        handleEducationChange(event, value, null, "year")
+                      }
+                      renderInput={(params) => (
+                        <TextField {...params} label="Completion Year" />
+                      )}
+                      getOptionLabel={(option) => option.toString()}
+                      isOptionEqualToValue={(option, value) => option === value}
+                      renderOption={(props, option) => (
+                        <li
+                          name="year"
+                          {...props}
+                          key={option}
+                          style={{
+                            ...props.style,
+                            color: "#000",
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          {option}
+                        </li>
+                      )}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -1099,7 +1280,7 @@ useEffect(() => {
                       label="CGPA / Percentage"
                       name="cgpa"
                       value={formData.education.cgpa}
-                      onChange={handleEducationChange}
+                      onChange={handleEducationChangeTwo}
                     />
                   </Grid>
                 </Grid>

@@ -1,0 +1,424 @@
+{
+    "streams": [
+      {
+        "degree": "Bachelor of Technology (BE/BTech)",
+        "streams": [
+          { "id": 1, "name": "Computer Science and Engineering" },
+          { "id": 2, "name": "Information Technology" },
+          { "id": 3, "name": "Electronics and Communication Engineering" },
+          { "id": 4, "name": "Mechanical Engineering" },
+          { "id": 5, "name": "Civil Engineering" },
+          { "id": 6, "name": "Electrical Engineering" },
+          { "id": 7, "name": "Chemical Engineering" },
+          { "id": 8, "name": "Aerospace Engineering" },
+          { "id": 9, "name": "Biotechnology" },
+          { "id": 10, "name": "Artificial Intelligence and Machine Learning" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Science (BSc)",
+        "streams": [
+          { "id": 11, "name": "Physics" },
+          { "id": 12, "name": "Chemistry" },
+          { "id": 13, "name": "Mathematics" },
+          { "id": 14, "name": "Biology" },
+          { "id": 15, "name": "Computer Science" },
+          { "id": 16, "name": "Statistics" },
+          { "id": 17, "name": "Biotechnology" },
+          { "id": 18, "name": "Microbiology" },
+          { "id": 19, "name": "Environmental Science" },
+          { "id": 20, "name": "Agriculture" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Arts (BA)",
+        "streams": [
+          { "id": 21, "name": "English Literature" },
+          { "id": 22, "name": "History" },
+          { "id": 23, "name": "Political Science" },
+          { "id": 24, "name": "Economics" },
+          { "id": 25, "name": "Psychology" },
+          { "id": 26, "name": "Sociology" },
+          { "id": 27, "name": "Philosophy" },
+          { "id": 28, "name": "Geography" },
+          { "id": 29, "name": "Journalism and Mass Communication" },
+          { "id": 30, "name": "Fine Arts" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Commerce (BCom)",
+        "streams": [
+          { "id": 31, "name": "Accounting and Finance" },
+          { "id": 32, "name": "Banking and Insurance" },
+          { "id": 33, "name": "Business Economics" },
+          { "id": 34, "name": "Marketing" },
+          { "id": 35, "name": "E-Commerce" },
+          { "id": 36, "name": "Taxation" },
+          { "id": 37, "name": "Corporate Secretaryship" },
+          { "id": 38, "name": "International Business" },
+          { "id": 39, "name": "Financial Markets" },
+          { "id": 40, "name": "Business Analytics" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Business Administration (BBA)",
+        "streams": [
+          { "id": 41, "name": "Finance" },
+          { "id": 42, "name": "Marketing" },
+          { "id": 43, "name": "Human Resource Management" },
+          { "id": 44, "name": "International Business" },
+          { "id": 45, "name": "Operations Management" },
+          { "id": 46, "name": "Entrepreneurship" },
+          { "id": 47, "name": "Hospitality Management" },
+          { "id": 48, "name": "Retail Management" },
+          { "id": 49, "name": "Digital Marketing" },
+          { "id": 50, "name": "Business Analytics" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Design (BDes)",
+        "streams": [
+          { "id": 61, "name": "Graphic Design" },
+          { "id": 62, "name": "Product Design" },
+          { "id": 63, "name": "Fashion Design" },
+          { "id": 64, "name": "Interior Design" },
+          { "id": 65, "name": "User Experience (UX) Design" },
+          { "id": 66, "name": "Animation Design" },
+          { "id": 67, "name": "Industrial Design" },
+          { "id": 68, "name": "Textile Design" },
+          { "id": 69, "name": "Jewelry Design" },
+          { "id": 70, "name": "Communication Design" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Hotel Management (BHM)",
+        "streams": [
+          { "id": 71, "name": "Hotel and Catering Management" },
+          { "id": 72, "name": "Food Production" },
+          { "id": 73, "name": "Food and Beverage Service" },
+          { "id": 74, "name": "Front Office Operations" },
+          { "id": 75, "name": "Housekeeping Management" },
+          { "id": 76, "name": "Hospitality Administration" },
+          { "id": 77, "name": "Event Management" },
+          { "id": 78, "name": "Travel and Tourism Management" },
+          { "id": 79, "name": "Airline and Airport Management" },
+          { "id": 80, "name": "Cruise Line Operations" }
+        ]
+      },
+      {
+        "degree": "Master of Arts (MA)",
+        "streams": [
+          { "id": 81, "name": "English" },
+          { "id": 82, "name": "History" },
+          { "id": 83, "name": "Political Science" },
+          { "id": 84, "name": "Economics" },
+          { "id": 85, "name": "Psychology" },
+          { "id": 86, "name": "Sociology" },
+          { "id": 87, "name": "Philosophy" },
+          { "id": 88, "name": "Public Administration" },
+          { "id": 89, "name": "International Relations" },
+          { "id": 90, "name": "Development Studies" }
+        ]
+      },
+      {
+        "degree": "Master of Science (MSc)",
+        "streams": [
+          { "id": 91, "name": "Physics" },
+          { "id": 92, "name": "Chemistry" },
+          { "id": 93, "name": "Mathematics" },
+          { "id": 94, "name": "Biology" },
+          { "id": 95, "name": "Computer Science" },
+          { "id": 96, "name": "Statistics" },
+          { "id": 97, "name": "Biotechnology" },
+          { "id": 98, "name": "Environmental Science" },
+          { "id": 99, "name": "Data Science" },
+          { "id": 100, "name": "Neuroscience" }
+        ]
+      },
+      {
+        "degree": "Master of Commerce (MCom)",
+        "streams": [
+          { "id": 101, "name": "Accounting" },
+          { "id": 102, "name": "Finance" },
+          { "id": 103, "name": "Banking" },
+          { "id": 104, "name": "Taxation" },
+          { "id": 105, "name": "Business Economics" },
+          { "id": 106, "name": "Marketing Management" },
+          { "id": 107, "name": "Human Resource Management" },
+          { "id": 108, "name": "International Business" },
+          { "id": 109, "name": "E-Commerce" },
+          { "id": 110, "name": "Financial Management" }
+        ]
+      },
+      {
+        "degree": "Master of Business Administration (MBA)",
+        "streams": [
+          { "id": 111, "name": "Marketing" },
+          { "id": 112, "name": "Finance" },
+          { "id": 113, "name": "Human Resource Management" },
+          { "id": 114, "name": "Operations Management" },
+          { "id": 115, "name": "Entrepreneurship" },
+          { "id": 116, "name": "Supply Chain Management" },
+          { "id": 117, "name": "International Business" },
+          { "id": 118, "name": "Business Analytics" },
+          { "id": 119, "name": "Digital Marketing" },
+          { "id": 120, "name": "Retail Management" }
+        ]
+      },
+      {
+        "degree": "Master of Technology (MTech)",
+        "streams": [
+          { "id": 121, "name": "Computer Science and Engineering" },
+          { "id": 122, "name": "Mechanical Engineering" },
+          { "id": 123, "name": "Electrical Engineering" },
+          { "id": 124, "name": "Electronics and Communication" },
+          { "id": 125, "name": "Civil Engineering" },
+          { "id": 126, "name": "Chemical Engineering" },
+          { "id": 127, "name": "Biotechnology" },
+          { "id": 128, "name": "Aerospace Engineering" },
+          { "id": 129, "name": "Environmental Engineering" },
+          { "id": 130, "name": "Nanotechnology" }
+        ]
+      },
+      {
+        "degree": "Master of Engineering (ME)",
+        "streams": [
+          { "id": 131, "name": "Structural Engineering" },
+          { "id": 132, "name": "Power Systems" },
+          { "id": 133, "name": "VLSI Design" },
+          { "id": 134, "name": "Computer Science and Engineering" },
+          { "id": 135, "name": "Thermal Engineering" },
+          { "id": 136, "name": "Manufacturing Engineering" },
+          { "id": 137, "name": "Robotics and Automation" },
+          { "id": 138, "name": "Communication Systems" },
+          { "id": 139, "name": "Geotechnical Engineering" },
+          { "id": 140, "name": "Industrial Engineering" }
+        ]
+      },
+      {
+        "degree": "Doctor of Philosophy (PhD)",
+        "streams": [
+          { "id": 141, "name": "Engineering" },
+          { "id": 142, "name": "Sciences" },
+          { "id": 143, "name": "Arts and Humanities" },
+          { "id": 144, "name": "Commerce and Management" },
+          { "id": 145, "name": "Medicine" },
+          { "id": 146, "name": "Law" },
+          { "id": 147, "name": "Education" },
+          { "id": 148, "name": "Agriculture" },
+          { "id": 149, "name": "Computer Science" },
+          { "id": 150, "name": "Social Sciences" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Education (BEd)",
+        "streams": [
+          { "id": 151, "name": "Elementary Education" },
+          { "id": 152, "name": "Secondary Education" },
+          { "id": 153, "name": "Special Education" },
+          { "id": 154, "name": "Physical Education" },
+          { "id": 155, "name": "Science Education" },
+          { "id": 156, "name": "Mathematics Education" },
+          { "id": 157, "name": "Language Education" },
+          { "id": 158, "name": "Social Studies Education" },
+          { "id": 159, "name": "Art Education" },
+          { "id": 160, "name": "Early Childhood Education" }
+        ]
+      },
+      {
+        "degree": "Master of Education (MEd)",
+        "streams": [
+          { "id": 161, "name": "Curriculum and Instruction" },
+          { "id": 162, "name": "Educational Leadership" },
+          { "id": 163, "name": "Special Education" },
+          { "id": 164, "name": "Educational Technology" },
+          { "id": 165, "name": "Guidance and Counseling" },
+          { "id": 166, "name": "Adult Education" },
+          { "id": 167, "name": "Educational Psychology" },
+          { "id": 168, "name": "Inclusive Education" },
+          { "id": 169, "name": "Educational Assessment" },
+          { "id": 170, "name": "STEM Education" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Ayurvedic Medicine and Surgery (BAMS)",
+        "streams": [
+          { "id": 171, "name": "Kayachikitsa (Internal Medicine)" },
+          { "id": 172, "name": "Shalya Tantra (Surgery)" },
+          { "id": 173, "name": "Shalakya Tantra (ENT and Ophthalmology)" },
+          { "id": 174, "name": "Kaumarbhritya (Pediatrics)" },
+          { "id": 175, "name": "Prasuti Tantra (Obstetrics and Gynecology)" },
+          { "id": 176, "name": "Panchakarma" },
+          { "id": 177, "name": "Dravyaguna (Pharmacology)" },
+          { "id": 178, "name": "Rasa Shastra (Ayurvedic Pharmacy)" },
+          { "id": 179, "name": "Swasthavritta (Preventive Medicine)" },
+          { "id": 180, "name": "Agada Tantra (Toxicology)" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Homeopathic Medicine and Surgery (BHMS)",
+        "streams": [
+          { "id": 181, "name": "Materia Medica" },
+          { "id": 182, "name": "Organon of Medicine" },
+          { "id": 183, "name": "Repertory" },
+          { "id": 184, "name": "Practice of Medicine" },
+          { "id": 185, "name": "Surgery" },
+          { "id": 186, "name": "Obstetrics and Gynecology" },
+          { "id": 187, "name": "Pediatrics" },
+          { "id": 188, "name": "Community Medicine" },
+          { "id": 189, "name": "Pharmacy" },
+          { "id": 190, "name": "Psychiatry" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Unani Medicine and Surgery (BUMS)",
+        "streams": [
+          { "id": 191, "name": "Kulliyat" },
+          { "id": 192, "name": "Munafe ul Aza" },
+          { "id": 193, "name": "Ilmul Advia" },
+          { "id": 194, "name": "Ilmul Amraz" },
+          { "id": 195, "name": "Moalajat" },
+          { "id": 196, "name": "Jarahiyat" },
+          { "id": 197, "name": "Ain, Uzn, Anf, Halaq wa Asnan" },
+          { "id": 198, "name": "Ilmul Qabalat wa Amraze Niswan" },
+          { "id": 199, "name": "Ilmul Atfal" },
+          { "id": 200, "name": "Tahaffuzi wa Samaji Tib" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Naturopathy and Yogic Sciences (BNYS)",
+        "streams": [
+          { "id": 201, "name": "Naturopathy" },
+          { "id": 202, "name": "Yoga" },
+          { "id": 203, "name": "Acupuncture" },
+          { "id": 204, "name": "Massage Therapy" },
+          { "id": 205, "name": "Nutrition" },
+          { "id": 206, "name": "Hydrotherapy" },
+          { "id": 207, "name": "Fasting Therapy" },
+          { "id": 208, "name": "Mud Therapy" },
+          { "id": 209, "name": "Chromotherapy" },
+          { "id": 210, "name": "Reflexology" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Physiotherapy (BPT)",
+        "streams": [
+          { "id": 211, "name": "Orthopedic Physiotherapy" },
+          { "id": 212, "name": "Neurological Physiotherapy" },
+          { "id": 213, "name": "Cardiopulmonary Physiotherapy" },
+          { "id": 214, "name": "Sports Physiotherapy" },
+          { "id": 215, "name": "Pediatric Physiotherapy" },
+          { "id": 216, "name": "Geriatric Physiotherapy" },
+          { "id": 217, "name": "Women's Health Physiotherapy" },
+          { "id": 218, "name": "Manual Therapy" },
+          { "id": 219, "name": "Electrotherapy" },
+          { "id": 220, "name": "Rehabilitation" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Architecture (BArch)",
+        "streams": [
+          { "id": 221, "name": "Architectural Design" },
+          { "id": 222, "name": "Urban Planning" },
+          { "id": 223, "name": "Landscape Architecture" },
+          { "id": 224, "name": "Interior Design" },
+          { "id": 225, "name": "Sustainable Architecture" },
+          { "id": 226, "name": "Construction Management" },
+          { "id": 227, "name": "Heritage Conservation" },
+          { "id": 228, "name": "Industrial Design" },
+          { "id": 229, "name": "Architectural Technology" },
+          { "id": 230, "name": "Digital Architecture" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Dental Surgery (BDS)",
+        "streams": [
+          { "id": 231, "name": "Orthodontics" },
+          { "id": 232, "name": "Periodontics" },
+          { "id": 233, "name": "Prosthodontics" },
+          { "id": 234, "name": "Oral and Maxillofacial Surgery" },
+          { "id": 235, "name": "Pedodontics" },
+          { "id": 236, "name": "Endodontics" },
+          { "id": 237, "name": "Oral Pathology" },
+          { "id": 238, "name": "Public Health Dentistry" },
+          { "id": 239, "name": "Oral Medicine and Radiology" },
+          { "id": 240, "name": "Conservative Dentistry and Endodontics" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Pharmacy (BPharm)",
+        "streams": [
+          { "id": 241, "name": "Pharmaceutics" },
+          { "id": 242, "name": "Pharmaceutical Chemistry" },
+          { "id": 243, "name": "Pharmacology" },
+          { "id": 244, "name": "Pharmacognosy" },
+          { "id": 245, "name": "Clinical Pharmacy" },
+          { "id": 246, "name": "Pharmaceutical Analysis" },
+          { "id": 247, "name": "Drug Regulatory Affairs" },
+          { "id": 248, "name": "Pharmaceutical Biotechnology" },
+          { "id": 249, "name": "Pharmaceutical Marketing" },
+          { "id": 250, "name": "Cosmetic Science" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Computer Applications (BCA)",
+        "streams": [
+          { "id": 251, "name": "Software Development" },
+          { "id": 252, "name": "Web Development" },
+          { "id": 253, "name": "Mobile App Development" },
+          { "id": 254, "name": "Data Science" },
+          { "id": 255, "name": "Artificial Intelligence" },
+          { "id": 256, "name": "Cloud Computing" },
+          { "id": 257, "name": "Cybersecurity" },
+          { "id": 258, "name": "Database Management" },
+          { "id": 259, "name": "Networking" },
+          { "id": 260, "name": "Game Development" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Fine Arts (BFA)",
+        "streams": [
+          { "id": 261, "name": "Painting" },
+          { "id": 262, "name": "Sculpture" },
+          { "id": 263, "name": "Applied Art" },
+          { "id": 264, "name": "Printmaking" },
+          { "id": 265, "name": "Photography" },
+          { "id": 266, "name": "Ceramics" },
+          { "id": 267, "name": "Textile Design" },
+          { "id": 268, "name": "Visual Communication" },
+          { "id": 269, "name": "Art History" },
+          { "id": 270, "name": "Digital Art" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Journalism and Mass Communication (BJMC)",
+        "streams": [
+          { "id": 271, "name": "Print Journalism" },
+          { "id": 272, "name": "Broadcast Journalism" },
+          { "id": 273, "name": "Digital Media" },
+          { "id": 274, "name": "Advertising" },
+          { "id": 275, "name": "Public Relations" },
+          { "id": 276, "name": "Corporate Communication" },
+          { "id": 277, "name": "Event Management" },
+          { "id": 278, "name": "Film Studies" },
+          { "id": 279, "name": "Radio Production" },
+          { "id": 280, "name": "Media Management" }
+        ]
+      },
+      {
+        "degree": "Bachelor of Laws (LLB)",
+        "streams": [
+          { "id": 281, "name": "Constitutional Law" },
+          { "id": 282, "name": "Criminal Law" },
+          { "id": 283, "name": "Civil Law" },
+          { "id": 284, "name": "Corporate Law" },
+          { "id": 285, "name": "Intellectual Property Law" },
+          { "id": 286, "name": "International Law" },
+          { "id": 287, "name": "Human Rights Law" },
+          { "id": 288, "name": "Environmental Law" },
+          { "id": 289, "name": "Cyber Law" },
+          { "id": 290, "name": "Labor and Industrial Law" }
+        ]
+      }
+    ]
+  }
